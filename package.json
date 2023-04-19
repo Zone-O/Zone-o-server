@@ -1,0 +1,17 @@
+{
+  "name": "Zone-o-app",
+  "version": "1.0.0",
+  "main": "sources/index.js",
+  "repository": "git@github.com:Zone-O/Zone-o-app.git",
+  "author": "osvegn <thomas.prudhomme@epitech.eu>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  },
+  "scripts": {
+    "start": "node sources/index.js"
+  }
+}
