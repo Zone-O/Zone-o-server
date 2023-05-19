@@ -62,7 +62,7 @@ jobs:
         # Prefer using scripts, place them in the scripts folder and call them here
 
       - name: Build
-        timeout-seconds: 10
+        timeout-minutes: 1
         run: |
           echo "Building"
           npm start
