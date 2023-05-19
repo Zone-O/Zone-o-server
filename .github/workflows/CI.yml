@@ -65,7 +65,8 @@ jobs:
         timeout-minutes: 1
         run: |
           echo "Building"
-          npm start
+          yarn install
+          yarn build
         # Run specific build command here
         # Prefer using scripts, place them in the scripts folder and call them here
 
