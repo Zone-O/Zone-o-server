@@ -25,11 +25,11 @@ jobs:
         # Add other dependencies here if needed
 
       - name: Run linter
-        uses: stefanoeb/eslint-action@1.0.2
+        uses: sibiraj-s/action-eslint@v2
         with:
-          files: ./sources
-          node-version: 16
-
+          eslint-args: '--ignore-path=.gitignore --quiet'
+          extensions: 'js,jsx,ts,tsx'
+          annotations: true
         # Run specific linter here
         # Prefer using scripts, place them in the scripts folder and call them here
 
