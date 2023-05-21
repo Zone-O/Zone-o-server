@@ -28,6 +28,7 @@ jobs:
         uses: stefanoeb/eslint-action@1.0.2
         with:
           files: ./sources
+          node-version: 16
 
         # Run specific linter here
         # Prefer using scripts, place them in the scripts folder and call them here
