@@ -66,11 +66,10 @@ jobs:
         # Prefer using scripts, place them in the scripts folder and call them here
 
       - name: Build and run
-        timeout-minutes: 1
         run: |
           echo "Building"
           yarn install
-          yarn start
+          yarn start &
           sleep 10
           curl http://localhost:3000
         # Run specific build command here
