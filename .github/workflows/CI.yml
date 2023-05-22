@@ -28,7 +28,6 @@ jobs:
         uses: wearerequired/lint-action@v2
         with:
           eslint: true
-          prettier: true
         # Run specific linter here
         # Prefer using scripts, place them in the scripts folder and call them here
 
