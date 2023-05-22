@@ -68,8 +68,8 @@ jobs:
       - name: Build and run
         run: |
           echo "Building"
-          yarn install
-          yarn start &
+          docker build -t zone-o-server .
+          docker run -d zone-o-server
           sleep 10
           curl http://localhost:3000
         # Run specific build command here
