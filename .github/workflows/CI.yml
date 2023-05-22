@@ -66,8 +66,7 @@ jobs:
       - name: Build and run
         run: |
           echo "Building"
-          docker build -t zone-o-server .
-          docker run -d zone-o-server
+          docker-compose up --build -d
           sleep 10
           curl http://localhost:3000
         # Run specific build command here
