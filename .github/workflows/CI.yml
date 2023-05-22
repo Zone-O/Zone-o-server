@@ -25,11 +25,10 @@ jobs:
         # Add other dependencies here if needed
 
       - name: Run linter
-        uses: sibiraj-s/action-eslint@v2
+        uses: wearerequired/lint-action@v2
         with:
-          eslint-args: '--ignore-path=.gitignore --quiet'
-          extensions: 'js,jsx,ts,tsx'
-          annotations: true
+          eslint: true
+          prettier: true
         # Run specific linter here
         # Prefer using scripts, place them in the scripts folder and call them here
 
