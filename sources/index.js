@@ -1,18 +1,18 @@
-const express = require("express");
+const express = require('express')
 
-const app = express();
+const app = express()
 
-app.get("/", (req, res) => {
-    res.status(200).send("Hello World!");
-});
+app.get('/', (req, res) => {
+  res.status(200).send('Hello World!')
+})
 
-var server = app.listen(3000, () => {
-    console.log("Server started on port 3000");
-});
+const server = app.listen(3000, () => {
+  console.log('Server started on port 3000')
+})
 
 app.close = () => {
-    server.close();
-    console.log("Server closed");
-};
+  server.close()
+  console.log('Server closed')
+}
 
-module.exports = app;
+module.exports = app
