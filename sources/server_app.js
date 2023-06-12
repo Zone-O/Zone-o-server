@@ -30,22 +30,6 @@ app.get('/', (req, res) => {
   res.send('Hello World')
 })
 
-app.get('/about.json', async (req, res) => {
-  try {
-    const about = {}
-    about.client = { host: req.ip }
-    about.server = {
-      current_time: Date.now(),
-      services: []
-    }
-    res.header('Content-Type', 'application/json')
-    res.type('json').send(JSON.stringify(about, null, 2) + '\n')
-  } catch (err) {
-    console.log(err)
-    res.status(500).send(err)
-  }
-})
-
 const server = app.listen(PORT, HOST, async () => {
   console.log(`Server is starting...`)
   console.log(`Server running http://${HOST}:${PORT}`)
