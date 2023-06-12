@@ -46,9 +46,14 @@ app.get('/about.json', async (req, res) => {
   }
 })
 
-app.listen(PORT, HOST, async () => {
+const server = app.listen(PORT, HOST, async () => {
   console.log(`Server is starting...`)
   console.log(`Server running http://${HOST}:${PORT}`)
 })
 
-module.exports = { app }
+app.close = () => {
+  server.close()
+  console.log('Server closed')
+}
+
+module.exports = app
