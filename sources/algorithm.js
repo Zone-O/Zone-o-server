@@ -1,7 +1,7 @@
 import express from 'express';
 import axios from 'axios'
 import fs from 'fs'
-import { getQQVERequirements } from './qqveRequirements.js';
+import { getQQVERequirements } from './qqve/qqveRequirements.js';
 
 let apartsInCity = []
 
@@ -37,6 +37,7 @@ const getApartsInCity = async (city) => {
 try {
   await getApartsInCity("Nantes")
   await getQQVERequirements(apartsInCity)
+  console.log(JSON.stringify(apartsInCity, null, "\t"))
 } catch (e) {
   console.log(e)
 }
