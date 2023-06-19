@@ -20,7 +20,7 @@ export const timeout = 80
 let qqveRequirementMark = 0;
 let finalMark = 0;
 
-const userMark = 5
+const userMark = 1
 
 export const computeQQVERequirement = (userMark, resNumber) => {
   if (1 <= resNumber && resNumber <= 5)
@@ -38,14 +38,14 @@ export const computeQQVERequirement = (userMark, resNumber) => {
   return (userMark * qqveRequirementMark) / 5
 }
 
-export const getQQVERequirements = async (apartsInCity) => {
+export const getQQVERequirements = async (apartsInCity, req) => {
   try {
     for (const [index, apart] of apartsInCity.entries()) {
       const values = await Promise.all(
-        [getEssentials(apart.lat, apart.lon, userMark), getWorkplaces(apart.lat, apart.lon, userMark),
-        getFoodServices(apart.lat, apart.lon, userMark), getCulturalPlaces(apart.lat, apart.lon, userMark),
-        getTransports(apart.lat, apart.lon, userMark), getSports(apart.lat, apart.lon, userMark),
-        getNaturalPlaces(apart.lat, apart.lon, userMark), getOfficeSupplies(apart.lat, apart.lon, userMark),
+        [getEssentials(apart.lat, apart.lon, req.markEssentials), getWorkplaces(apart.lat, apart.lon, req.markWorkplaces),
+        getFoodServices(apart.lat, apart.lon, req.markFoodServices), getCulturalPlaces(apart.lat, apart.lon, req.markCulturalPlaces),
+        getTransports(apart.lat, apart.lon, req.markTransports), getSports(apart.lat, apart.lon, userMark),
+        getNaturalPlaces(apart.lat, apart.lon, userMark), getOfficeSupplies(apart.lat, apart.lon, req.markOfficeSupplies),
         getMedicalServices(apart.lat, apart.lon, userMark), getParkings(apart.lat, apart.lon, userMark),
         getWorshipPlaces(apart.lat, apart.lon, userMark)]
       )
@@ -53,6 +53,7 @@ export const getQQVERequirements = async (apartsInCity) => {
         finalMark = finalMark + value
       }
       finalMark = finalMark / values.length
+      console.log(apart.location, finalMark)
       apartsInCity[index] = {...apart, finalMark: finalMark}
       finalMark = 0
     }

@@ -1,4 +1,3 @@
-import express from 'express';
 import axios from 'axios'
 import fs from 'fs'
 import { getQQVERequirements } from './qqve/qqveRequirements.js';
@@ -6,6 +5,7 @@ import { getQQVERequirements } from './qqve/qqveRequirements.js';
 let apartsInCity = []
 
 const getApartsInCity = async (city) => {
+  console.log("city", city)
   const urlNominatimApi = "https://nominatim.openstreetmap.org/search?format=json&q="
   let res;
   try {
@@ -19,6 +19,7 @@ const getApartsInCity = async (city) => {
   const maxLat = parseFloat(res.data[0].boundingbox[1])
   const minLon = parseFloat(res.data[0].boundingbox[2])
   const maxLon = parseFloat(res.data[0].boundingbox[3])
+  console.log(minLat, maxLat, minLon, maxLon)
 
   let announceLat;
   let announceLon;
@@ -34,10 +35,13 @@ const getApartsInCity = async (city) => {
   })
 }
 
-try {
-  await getApartsInCity("Nantes")
-  await getQQVERequirements(apartsInCity)
-  console.log(JSON.stringify(apartsInCity, null, "\t"))
-} catch (e) {
-  console.log(e)
+export const getQQVEApartsInCity = async (req) => {
+  try {
+    apartsInCity = []
+    await getApartsInCity(req.city)
+    await getQQVERequirements(apartsInCity, req)
+    return apartsInCity
+  } catch (e) {
+    throw e
+  }
 }
