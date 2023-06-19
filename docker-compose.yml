@@ -7,8 +7,33 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
+    # depends_on:
+    #   mydatabase:
+    #     condition: service_healthy
+    env_file:
+      - .env
+    environment:
+      - IS_MIGRATION=TRUE #SET TO true when a migration needed
+      - DATABASE_URL=mysql://${user}:${password}@database:3306/${database}
     volumes:
-      - server:/app
+      - .:/code
+    stdin_open: true
+    tty: true
+
+  mydatabase:
+    build:
+      context: ./database
+      dockerfile: Dockerfile
+    environment:
+      MYSQL_ROOT_PASSWORD: ${password}
+      MYSQL_DATABASE: ${database}
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u ${user} --password=${password}
+      interval: 5s
+      timeout: 45s
+      retries: 40
 
 volumes:
   server:
