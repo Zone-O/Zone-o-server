@@ -1,6 +1,6 @@
-const request = require('supertest')
-const app = require('../sources/server_app.js')
-const { describe, it, afterAll, expect } = require('@jest/globals')
+import {jest, describe, it, afterAll, expect} from '@jest/globals'
+import request from 'supertest'
+import app from '../sources/server_app.js'
 
 describe('GET /', () => {
   it('should return 200 OK', async () => {
