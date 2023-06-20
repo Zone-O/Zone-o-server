@@ -1,11 +1,13 @@
 'use strict'
 
 /** @module route */
+import express from 'express'
+import { getQQVEApartsInCity } from './algorithm.js'
+import {createFirstUser, GetUsers} from './database_utils'
 
-const express = require('express')
 const app = express()
-const {createFirstUser, GetUsers} = require('./database_utils')
-
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
 app.set('json spaces', 2)
 
 const PORT = 3000
@@ -37,6 +39,16 @@ app.get('/', (req, res)=> {
   res.send('Hello World')
 })
 
+app.post('/qqveApartsInCity', async (req, res) => {
+  try {
+    const qqveApartsInCity = await getQQVEApartsInCity(req.body)
+    res.status(200).json(qqveApartsInCity)
+  } catch (e) {
+    console.log(e)
+    res.sendStatus(500)
+  }
+})
+
 const server = app.listen(PORT, HOST, async () => {
   console.log(`Server is starting...`)
   console.log(`Server running http://${HOST}:${PORT}`)
@@ -48,4 +60,4 @@ app.close = () => {
   console.log('Server closed')
 }
 
-module.exports = app
+export default app
