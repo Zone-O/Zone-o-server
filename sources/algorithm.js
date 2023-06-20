@@ -1,6 +1,6 @@
 import axios from 'axios'
 import fs from 'fs'
-import { getQQVERequirements } from './qqve/qqveRequirements.js';
+import { getQQVERequirements } from './qqve/qqveRequirements.js'
 
 let apartsInCity = []
 
