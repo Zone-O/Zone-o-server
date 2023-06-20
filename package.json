@@ -1,5 +1,5 @@
 {
-  "name": "Zone-o-app",
+  "name": "zone-o-app",
   "version": "1.0.0",
   "main": "sources/index.js",
   "repository": "git@github.com:Zone-O/Zone-o-app.git",
@@ -23,7 +23,7 @@
     "typescript": "*"
   },
   "scripts": {
-    "start": "node sources/index.js",
+    "start": "node sources/server_app.js",
     "test": "jest"
   }
 }

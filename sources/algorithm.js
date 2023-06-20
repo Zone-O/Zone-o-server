@@ -5,7 +5,7 @@ import { getQQVERequirements } from './qqve/qqveRequirements.js';
 let apartsInCity = []
 
 const getApartsInCity = async (city) => {
-  console.log("city", city)
+  console.log("City: ", city)
   const urlNominatimApi = "https://nominatim.openstreetmap.org/search?format=json&q="
   let res;
   try {
@@ -19,7 +19,6 @@ const getApartsInCity = async (city) => {
   const maxLat = parseFloat(res.data[0].boundingbox[1])
   const minLon = parseFloat(res.data[0].boundingbox[2])
   const maxLon = parseFloat(res.data[0].boundingbox[3])
-  console.log(minLat, maxLat, minLon, maxLon)
 
   let announceLat;
   let announceLon;

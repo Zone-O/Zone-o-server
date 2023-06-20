@@ -1,5 +1,5 @@
 const request = require('supertest')
-const app = require('../sources/index.js')
+const app = require('../sources/server_app.js')
 const { describe, it, afterAll, expect } = require('@jest/globals')
 
 describe('GET /', () => {
