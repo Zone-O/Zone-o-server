@@ -4,6 +4,7 @@
 
 const express = require('express')
 const app = express()
+const {createFirstUser, GetUsers} = require('./database_utils')
 
 app.set('json spaces', 2)
 
@@ -26,13 +27,20 @@ app.use(function (req, res, next) {
   }
 })
 
-app.get('/', (req, res) => {
+app.get('/root_users', (req, res), async() => {
+  const users = await GetUsers()
+  res.send(users.length)
+})
+
+
+app.get('/', (req, res)=> {
   res.send('Hello World')
 })
 
 const server = app.listen(PORT, HOST, async () => {
   console.log(`Server is starting...`)
   console.log(`Server running http://${HOST}:${PORT}`)
+  await createFirstUser()
 })
 
 app.close = () => {
