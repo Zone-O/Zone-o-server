@@ -1,7 +1,9 @@
-const mysql = require('mysql')
-require('dotenv').config({ path: '../.env' })
-const { PrismaClient } = require('@prisma/client')
+import mysql from 'mysql'
+import dotenv from 'dotenv';
+import { PrismaClient } from '@prisma/client'
+
 const prisma = new PrismaClient()
+dotenv.config({ path: '../.env' });
 
 /**
  * Connect to the MY_SQL database
@@ -14,7 +16,4 @@ const connection = mysql.createPool({
   database: process.env.database
 })
 
-module.exports = {
-  prisma,
-  connection
-}
+export {connection, prisma}
