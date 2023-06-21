@@ -4,12 +4,12 @@ FROM node:16-alpine
 WORKDIR /usr/src/app
 
 # Install app dependencies
-COPY package.json ./
-RUN yarn install
-
-# Bundle app source
 COPY . .
+RUN yarn install
+RUN yarn add dotenv-cli
+RUN yarn add prisma
+RUN yarn add prisma-docs-generator
 
 EXPOSE 3000
 
-CMD [ "yarn", "start" ]
+ENTRYPOINT [ "npm",  "start"]

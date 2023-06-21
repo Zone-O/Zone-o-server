@@ -1,9 +1,9 @@
 'use strict'
 
 /** @module route */
-
 import express from 'express'
 import { getQQVEApartsInCity } from './algorithm.js'
+import {createFirstUser, GetUsers} from './database_utils.js'
 
 const app = express()
 app.use(express.json())
@@ -29,7 +29,7 @@ app.use(function (req, res, next) {
   }
 })
 
-app.get('/', (req, res) => {
+app.get('/', (req, res)=> {
   res.send('Hello World')
 })
 
@@ -41,6 +41,11 @@ app.post('/qqveApartsInCity', async (req, res) => {
     console.log(e)
     res.sendStatus(500)
   }
+})
+
+app.get('/root_users', async (req, res) => {
+  const users = await GetUsers()
+  res.send(users.length)
 })
 
 const server = app.listen(PORT, HOST, async () => {
